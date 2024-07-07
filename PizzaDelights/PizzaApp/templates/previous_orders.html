@@ -1,0 +1,45 @@
+{% extends 'base.html' %} <!-- Extend base.html -->
+
+{% block title %}
+    Previous Orders
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <!-- Button to place a new order -->
+    <a href="{% url 'create' %}" class="btn btn-secondary mb-3">Place New Order</a>
+    <!-- Heading for previous orders -->
+    <h2>Previous Orders</h2>
+    <!-- Row to contain the cards for each previous order -->
+    <div class="row">
+        {% for order in orders %}
+        <!-- Column to contain each order card -->
+        <div class="col-md-4 mb-4">
+            <!-- Card for each order -->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><b>Pizza Details:</b></h5>
+                    <p class="card-text"><b>Size:</b> {{ order.pizza.size }}</p>
+                    <p class="card-text"><b>Crust:</b> {{ order.pizza.crust }}</p>
+                    <p class="card-text"><b>Sauce:</b> {{ order.pizza.sauce }}</p>
+                    <p class="card-text"><b>Cheese:</b> {{ order.pizza.cheese }}</p>
+                    <p class="card-text"><b>Toppings:</b>
+                        {% if order.pizza.pepperoni %} Pepperoni, {% endif %}
+                        {% if order.pizza.chicken %} Chicken, {% endif %}
+                        {% if order.pizza.ham %} Ham, {% endif %}
+                        {% if order.pizza.pineapple %} Pineapple, {% endif %}
+                        {% if order.pizza.peppers %} Peppers, {% endif %}
+                        {% if order.pizza.mushrooms %} Mushrooms, {% endif %}
+                        {% if order.pizza.onions %} Onions, {% endif %}
+                        {% if order.pizza.pear %} Pear, {% endif %}
+                        {% if order.pizza.garlic %} Garlic, {% endif %}
+                        {% if order.pizza.jalepenos %} Jalapenos {% endif %}
+                    </p>
+                    <p class="card-text"><b>Time Of Purchase:</b> {{ order.date_of_order }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

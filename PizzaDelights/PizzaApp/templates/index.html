@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Homepage
+{% endblock %}
+
+{% block stylecss %}
+    <style>
+        .welcome-heading {
+            font-size: 48px;
+            color: #ff6347;
+            margin-top:35px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .slogan {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 24px;
+            color: #555;
+        }
+        .pizza-icon {
+            display: block;
+            margin: 0 auto;
+            margin-top:50px;
+            width: 200px;
+            height: auto;
+            border-radius: 50%;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+        }
+        .email-heading{
+            text-align:center;
+            margin-top:35px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <img class="pizza-icon" src="https://images.vexels.com/media/users/3/157209/isolated/preview/725aa2473489db2e550656210c557f18-cheesy-pizza-icon-by-vexels.png" alt="Pizza Icon">
+    {% if user.is_authenticated %}
+        <h1 class="welcome-heading">Welcome {{ user.username }}, to Pizza Delights!</h1>
+    {% else %}
+        <h1 class="welcome-heading">Welcome to Pizza Delights!</h1>
+    {% endif %}
+    <h4 class="slogan">Indulge in Delicious Delights, Slice by Slice!</h4>
+    {% if user.is_authenticated %}
+        <h1 class="email-heading">{{ user.email }}</h1>
+    {% endif %}
+{% endblock %}

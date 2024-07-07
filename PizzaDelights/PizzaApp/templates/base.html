@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Page title -->
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Custom CSS -->
+    <style>
+        /* Styles for pizza icon */
+        .pizza-icon {
+            display: block;
+            margin: 0 auto;
+            width: 150px;
+            height: auto;
+            border-radius: 50%;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Styles for navbar brand */
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff6347;
+        }
+
+        /* Styles for navbar links */
+        .nav-link {
+            font-size: 18px;
+            color: #ffffff;
+            margin-right:20px;
+        }
+
+        /* Hover styles for navbar links */
+        .nav-link:hover {
+            color: #ff6347;
+        }
+
+        /* Styles for navbar */
+        .navbar-nav{
+            margin-left:auto;
+        }
+
+        /* Styles for footer */
+        .footer {
+            background-color: #181818;
+            color:white;
+            text-align: center;
+            position:fixed;
+            bottom: -15px;
+            width: 100%;
+        }
+    </style>
+    <!-- Additional custom styles (for other pages) -->
+    {% block stylecss %}
+    {% endblock %}
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <!-- Pizza icon -->
+            <img src="https://images.vexels.com/media/users/3/157209/isolated/preview/725aa2473489db2e550656210c557f18-cheesy-pizza-icon-by-vexels.png" height="70", weight="70"></img>
+            <!-- Navbar brand class -->
+            <a class="navbar-brand" href="{% url 'index' %}">Pizza Delights</a>
+            <!-- Navbar toggle button class -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="true" aria-label="Toggle navigation">
+            </button>
+            <!-- Navbar collapse content -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <!-- Rendering navbar links based on user authentication -->
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'create' %}">Order Pizza</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'previous_orders' %}">Previous Orders</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'register' %}">Sign up</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">Login</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Main content container -->
+    <div class="container mt-4">
+        <!-- Block for the main content -->
+        {% block content %}{% endblock %}
+    </div>
+    <!-- Footer -->
+    <div class="footer">
+        <p id="footer-text">&copy; 2024 Pizza Delights. CA298 Assignment 1.</p>
+    </div>
+</body>
+</html>

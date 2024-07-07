@@ -1,0 +1,14 @@
+{% extends 'base.html' %} <!-- Extend base.html functionality-->
+
+{% block title %}
+    Create Pizza
+{% endblock %}
+
+{% block content %}
+    <!-- Form for OrderForm (creating pizza)-->
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_table }}
+        <button type="submit">Order Pizza</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %} <!-- Extend functionality from base.html -->
+
+{% block title %}
+    Details
+{% endblock %}
+
+{% block content %}
+    <!--Form for DeliveryDetail-->
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_table }}
+        <button type="submit">Submit Details</button>
+    </form>
+{% endblock %}

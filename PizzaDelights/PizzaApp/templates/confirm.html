@@ -1,0 +1,65 @@
+{% extends 'base.html' %} <!-- Extend base.html functionality -->
+
+{% block title %}
+    Order Confirmation
+{% endblock %}
+
+{% block stylecss %}
+    <style>
+        .card-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 65vh; /* This ensures the card is vertically centered */
+        }
+
+        .card {
+            width: 50%; /* Make the card width half the screen */
+            margin-top: 50px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .card-body {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .card-text {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .btn-primary {
+            margin-top: 20px;
+            width: 100%;
+        }
+
+    </style>
+{% endblock %}
+
+{% block content %}
+    <!-- Card container, along with the card body and details based on DeliveryForm and OrderForm from user input.-->
+    <div class="card-container">
+        <div class="card">
+            <div class="card-body">
+                <h1>Thanks {{ user.username }} for purchasing!</h1>
+                <h5 class="card-text">Name: <br> {{details.name}}</h5>
+                <h5 class="card-text">Address: <br> {{details.address}}</h5>
+                <h5 class="card-text">Pizza: <br> {{pizza.size}}, {{pizza.crust}} Pizza with {{pizza.sauce}} sauce.</h5>
+                <h5 class="card-text">Date of Order: <br> {{order.date_of_order}}</h5>
+
+                <h5>Your order will be delivered in approximately {{ time }} minutes </h5>
+                <a href="{% url 'previous_orders' %}" class="btn btn-primary">See Previous Orders</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
